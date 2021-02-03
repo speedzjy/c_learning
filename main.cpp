@@ -1,12 +1,14 @@
 #include<iostream>
 #include <vector>
 #include <time.h>
+#include "hello.h"
 using namespace std;
 
 int countPrimes(int n);
 
 int main(){
     system("chcp 65001");
+    //printhello();
     int count=0;
     clock_t start,finish; //
     double Times=0;
