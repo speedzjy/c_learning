@@ -7,8 +7,10 @@
             "args": [
                 "-g",
                 "${file}",
+                "-g",
+                "${fileDirname}\\hello.cpp",
                 "-o",
-                "${fileDirname}\\${fileBasenameNoExtension}.exe"
+                "${fileDirname}\\${fileBasenameNoExtension}.exe",
             ],
             "options": {
                 "cwd": "G:\\mingw-64\\mingw64\\bin"
