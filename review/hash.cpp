@@ -13,8 +13,36 @@ int search(HashTable *h, char value[], int *pos, int *times);
 int insert(HashTable *h, char value[]);
 void recreate(HashTable *h);
 
-void init(HashTable *h) {
-    h->size = 2000;
+int main() {
+    HashTable *hashtable = (HashTable*)malloc(sizeof(HashTable));
+    init(hashtable);
+    char buffer[1000];
+    int n;
+    scanf("%d", &n);
+    for (int i = 1; i <= n; i++) {
+        scanf("%s", buffer);
+        int ans = insert(hashtable, buffer);
+        if (ans == 0) {
+            printf("recreate while insert!\n");
+        } else if (ans == 1) {
+            printf("insert success!\n");
+        } else if (ans == 2) {
+            printf("It already exists!\n");
+        }
+    }
+    int temp_pos, temp_times;
+    scanf("%s", buffer);
+    if (search(hashtable, buffer, &temp_pos, &temp_times)) {
+        printf("search success!\n");
+    } else {
+        printf("search failed!\n");
+    }
+    clear(hashtable);
+    return 0;
+}
+
+void init(HashTable *h, int size) {
+    h->size = size;
     h->elem = (char **)malloc(sizeof(char *) * h->size);
     for (int i = 0; i < h->size; i++) {
         h->elem[i] = NULL;
@@ -108,32 +136,4 @@ void clear(HashTable *h) {
     }
     free(h->elem);
     free(h);
-}
-
-int main() {
-    HashTable *hashtable = (HashTable*)malloc(sizeof(HashTable));
-    init(hashtable);
-    char buffer[1000];
-    int n;
-    scanf("%d", &n);
-    for (int i = 1; i <= n; i++) {
-        scanf("%s", buffer);
-        int ans = insert(hashtable, buffer);
-        if (ans == 0) {
-            printf("recreate while insert!\n");
-        } else if (ans == 1) {
-            printf("insert success!\n");
-        } else if (ans == 2) {
-            printf("It already exists!\n");
-        }
-    }
-    int temp_pos, temp_times;
-    scanf("%s", buffer);
-    if (search(hashtable, buffer, &temp_pos, &temp_times)) {
-        printf("search success!\n");
-    } else {
-        printf("search failed!\n");
-    }
-    clear(hashtable);
-    return 0;
 }
